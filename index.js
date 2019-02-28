@@ -1,18 +1,15 @@
-const path = require('./path')
+#!/usr/bin/env node
+
+// const path = require('./path')
 const config = require('./config')
 const inquirer = require('inquirer')
-const question = require('./cli')
+const questions = require('./cli')
 const encrypt = require('./encrypt')
 
-inquirer.prompt(question).then(answer => {
-  
-  const encWord = Object.values(answer).toString()
-  
-  if (config.has('encrypt')) {
-    new Error('Encrypt already exists. Delete it with `.delete()` or do something else') 
-  } else {    
-    config.set('encrypt', encrypt(encWord))
+inquirer.prompt(questions).then(answers => {
+  if (config.has(answers.key) === true) {
+    throw new Error('Encrypt already exists. Delete it with `.delete()` or do something else')
+  } else {
+    config.set(answers.key, encrypt(answers.value))
   }
-  console.log(`Your new token is: ${config.get('encrypt')}`)
-  
 })
