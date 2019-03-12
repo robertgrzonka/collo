@@ -1,4 +1,4 @@
 const envPaths = require('env-paths')
-const paths = envPaths('colloportus')
+const paths = envPaths('collo')
 
 module.exports = paths
