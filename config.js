@@ -5,7 +5,7 @@ const config = new Conf()
 config.store = {
   name: pkg.name,
   private: true,
-  dev: true
+  color: null
 }
 
 module.exports = config

@@ -8,13 +8,8 @@ const requireString = value => {
 const questions = [
   {
     type: 'input',
-    message: 'Name your token',
-    name: 'key',
-    validate: requireString
-  }, {
-    type: 'input',
-    message: 'Enter word to encrypt',
-    name: 'value',
+    message: 'Select color. For list of available colors type collo --colors',
+    name: 'color',
     validate: requireString
   }
 ]
