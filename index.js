@@ -2,17 +2,21 @@
 
 const path = require('./path')
 const config = require('./config')
-const inquirer = require('inquirer')
+const Inquirer = require('inquirer')
 const questions = require('./questions')
-const encrypt = require('./encrypt')
+const chalk = require('chalk')
+// const generator = require('./text-gen')
 
-inquirer.prompt(questions).then(answers => {
-  if (config.has(answers.key)) {
-    throw new Error('Encrypt already exists. Delete it with `.delete()` or do something else')
-  } else {
-    config.set(answers.key, encrypt(answers.value))
-    console.log(`Saved in ${path.config}`)
-  }
-  return config
-})
+const ui = new Inquirer.ui.BottomBar()
+ui.log.write(`${chalk.bold('collo™ • test colors in your console')}`)
 
+Inquirer
+  .prompt(questions)
+  .then(answers => {
+    // console.log(JSON.stringify(answers, null, ' '))
+    let obj = Object.values(answers)
+    obj.map(value => {
+      const color = Object.values(value)
+      console.log(chalk.hex(color)(JSON.stringify(color)))
+    })
+  })
