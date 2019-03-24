@@ -1,3 +1,7 @@
+const inquirer = require('inquirer')
+const colorPalette = require('./colorPalette')
+const clear = require('clear')
+
 module.exports = {
   type: 'list',
   name: 'options',
@@ -6,14 +10,14 @@ module.exports = {
     'See list of colors',
     'See color in sentence',
     'Edit existing list of colors',
-    new Inquirer.Separator(),
+    new inquirer.Separator(),
     'Exit'
   ],
   filter: value => {
     switch (value) {
       case 'See list of default colors':
         clear()
-        return Object.keys(defaultColors)
+        return Object.keys(colorPalette)
       case 'See color in sentence':
         const checkColor = [ {
           type: 'list',
@@ -31,7 +35,7 @@ module.exports = {
             }
           }
         } ]
-        return Inquirer.prompt(checkColor)
+        return inquirer.prompt(checkColor)
       case 'Edit existing list of colors':
         return 'Place for editing'
     }
