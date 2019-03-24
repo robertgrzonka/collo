@@ -10,13 +10,27 @@
   "dependencies": {
     "args": "^5.0.0",
     "chalk": "^2.4.2",
+<<<<<<< HEAD
     "clear": "^0.1.0",
+=======
+>>>>>>> cf34471d4dd68d05cb9d72614ae40cbd1a86bbf7
     "conf": "^2.2.0",
     "env-paths": "^2.0.0",
     "inquirer": "^6.2.2",
     "standard": "^12.0.1"
   },
+<<<<<<< HEAD
   "devDependencies": {},
+=======
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  },
+>>>>>>> cf34471d4dd68d05cb9d72614ae40cbd1a86bbf7
   "bin": {
     "collo": "./bin/collo"
   }
