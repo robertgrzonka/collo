@@ -5,7 +5,7 @@ const defaultColors = require('./colorPalette.js')
 
 const questions = [ {
   type: 'list',
-  name: 'options',
+  name: 'colors',
   message: 'What would you like to do now?',
   choices: [
     'See list of default colors',
@@ -17,8 +17,7 @@ const questions = [ {
   filter: value => {
     switch (value) {
       case 'See list of default colors':
-        clear()
-        return defaultColors
+        return Object.entries(defaultColors)
       case 'See color in sentence':
         const checkColor = [ {
           type: 'list',

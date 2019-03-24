@@ -13,7 +13,6 @@ args
   })
   .option('overwrite', 'Overwrite color which already exists in your config. | boolean', false)
   .command('list', 'Print list of available colors', colors => colors)
-
 const flags = args.parse(process.argv, {
   name: 'collo',
   mainColor: [

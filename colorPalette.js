@@ -1,4 +1,4 @@
-module.exports.defaultColors = {
+module.exports = {
   black: '#000000',
   white: '#ffffff',
   red: '#DC143C',
