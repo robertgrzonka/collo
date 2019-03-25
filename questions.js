@@ -1,7 +1,5 @@
-const Inquirer = require('inquirer')
-const clear = require('clear')
-
-const defaultColors = require('./colorPalette.js')
+const inquirer = require('inquirer')
+const colorPalette = require('./colorPalette.js')
 
 const questions = [ {
   type: 'list',
@@ -11,13 +9,13 @@ const questions = [ {
     'See list of default colors',
     'See color in sentence',
     'Edit existing list of colors',
-    new Inquirer.Separator(),
+    new inquirer.Separator(),
     'Exit'
   ],
   filter: value => {
     switch (value) {
       case 'See list of default colors':
-        return Object.entries(defaultColors)
+        return Object.entries(colorPalette)
       case 'See color in sentence':
         const checkColor = [ {
           type: 'list',
@@ -35,7 +33,7 @@ const questions = [ {
             }
           }
         } ]
-        return Inquirer.prompt(checkColor)
+        return inquirer.prompt(checkColor)
       case 'Edit existing list of colors':
         console.log('Place for editing')
     }

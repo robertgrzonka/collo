@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const args = require('args')
-const colors = [ 'black', 'white', 'red', 'green', 'blue', 'yellow' ]
 
 args
   .option('color', 'Choose color | string', 'black', value => {

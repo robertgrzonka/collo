@@ -6,7 +6,7 @@ const config = new Conf()
 config.store = {
   name: pkg.name,
   private: true,
-  color: colorPalette
+  colors: Object.entries(colorPalette)
 }
 
 module.exports = config
