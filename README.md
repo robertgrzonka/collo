@@ -1,8 +1,6 @@
-## **c o l l o** <small>™</small>
+## **collo** <small>™</small>
 
-> Simple CLI tool to encrypt your passwords and to store them in one place.<sup>1</sup>
-
-##### <sup>1</sup> Nevertheless, this method isn't much safe. `collo` should be used for small, personal needs. Read more in [overview](#overview).
+> Lorem ipsum.
 
 ### Table of Contents
 
