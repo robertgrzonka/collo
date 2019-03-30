@@ -1,4 +1,4 @@
-## **collo** <small>™</small>
+## **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo)
 
 > Lorem ipsum.
 
