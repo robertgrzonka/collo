@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 
-const path = require('./path')
+const paths = require('./path')
 const config = require('./config')
 const inquirer = require('inquirer')
-const questions = require('./questions')
-const encrypt = require('./encrypt')
+const chalk = require('chalk')
+const questions = require('./questions/all')
 
-inquirer.prompt(questions).then(answers => {
-  if (config.has(answers.key)) {
-    throw new Error('Encrypt already exists. Delete it with `.delete()` or do something else')
-  } else {
-    config.set(answers.key, encrypt(answers.value))
-    console.log(`Saved in ${path.config}`)
-  }
-  return config
-})
+console.log(`${chalk.bold('collo™ • test colors in your console')}`)
+const start = questions => {
+  inquirer.prompt(questions.first)
+    .then(answers => {
+      console.log(answers.options)
+      console.log(`
+      Your path: ${paths.config}
+      Your config: ${config.store}
+      `)
+    })
+}
 
+start(questions)

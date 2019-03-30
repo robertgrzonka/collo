@@ -1,20 +1,25 @@
+#!/usr/bin/env node
+
 const args = require('args')
 
 args
-  .option('secret', 'Secret to encrypt | string', undefined, value => {
+  .option('color', 'Choose color | string', 'black', value => {
     if (typeof value === 'string') {
       return value
     } else {
       console.log('Value must be a string.')
     }
   })
-  .option('overwrite', 'Overwrite specific key which already exists in your config. | boolean', false)
-  
+  .option('overwrite', 'Overwrite color which already exists in your config. | boolean', false)
+  .command('list', 'Print list of available colors', colors => colors)
+
 const flags = args.parse(process.argv, {
   name: 'collo',
   mainColor: [
     'red',
     'bold'
   ],
-  value: 'Encrypt your passwords and tokens, save them and forget!'
+  value: 'Something else.'
 })
+
+module.exports = flags
