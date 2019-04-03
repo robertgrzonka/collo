@@ -27,16 +27,20 @@ Object.defineProperties(Collo, {
       if (!regex.test(value)) throw new Error(chalk`Value have to be in HEX format. {bold.red Example}: #000000`)
       
       this.colors[ key ] = value
-      return this.colors[ key ]
+      this.config.set(`colors.${key}`, value)
+      return this.config.get(colors[ key ])
     }
   },
   
   editColor: {
     set (color) {
       const [ key, value ] = color
-      if (!this.colors[ key ]) throw new Error(chalk`This color doesn't exist. If you want to add new collor use {bold addColor}`)
+      if(!this.colors[ key ]) throw new Error(chalk`This color doesn't exist. If you want to add new collor use {bold addColor}`)
+      const regex = /^\#[0-9a-zA-Z]{6}/
+      if(!regex.test(value)) throw new Error(chalk`Value have to be in HEX format. {bold.red Example}: #000000`)
       this.colors[ key ] = value
-      return this.colors[ key ]
+      this.config.set(`colors.${key}`, value)
+      return this.config.get(colors[ key ])
     }
   }
 })

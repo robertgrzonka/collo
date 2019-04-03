@@ -1,7 +1,7 @@
 {
   "name": "collo",
   "version": "1.0.0",
-  "description": "CLI to keep all of your secrets.",
+  "description": "create and test your color palette in CLI",
   "main": "./index.js",
   "repository": "https://github.com/robertgrzonka/collo",
   "author": "robertgrzonka <robert@theguys.sh> (https://theguys.sh)",
@@ -16,8 +16,5 @@
     "inquirer": "^6.2.2",
     "standard": "^12.0.1"
   },
-  "devDependencies": {},
-  "bin": {
-    "collo": "./bin/collo"
-  }
+  "devDependencies": {}
 }
