@@ -11,6 +11,11 @@
 
 ## Contribution
 
+## TODO
+
+- [ ] TypeScript definitions
+- [ ] Jest tests
+
 ## License
 
 MIT © [robertgrzonka](https://robert.theguys.sh)
