@@ -1,7 +1,17 @@
 # **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo)
 > Create list of your colors, test with CLI and reuse it!
 
-## Table of Contents
+- [**collo** ![Build Status](https://travis-ci.com/robertgrzonka/collo)](#collo-build-status)
+  - [Overview](#overview)
+  - [Usage](#usage)
+  - [API](#api)
+    - [`collo.path`](#collopath)
+    - [`collo.colors`](#collocolors)
+    - [`collo.editColor`](#colloeditcolor)
+    - [`collo.addColor`](#colloaddcolor)
+  - [Contribution](#contribution)
+  - [TODO](#todo)
+  - [License](#license)
 
 ## Overview
 
