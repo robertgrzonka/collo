@@ -1,6 +1,6 @@
 {
   "name": "collo-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "create and test your color palette in CLI",
   "main": "index.js",
   "repository": {
@@ -17,10 +17,12 @@
     "inquirer": "^6.2.2",
     "standard": "^12.0.1"
   },
-  "devDependencies": {
-    "pkg": "^4.3.7"
-  },
-  "scripts": {
-    "build": "pkg index.js -t node10-macos-x64 -o collo"
-  }
+  "devDependencies": {},
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "bin": "index.js"
 }
