@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "robertgrzonka",
+      "name": "robertgrzonka",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/35585466?v=4",
+      "profile": "https://robert.theguys.sh",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "collo",
+  "projectOwner": "robertgrzonka",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
