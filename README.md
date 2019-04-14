@@ -22,9 +22,11 @@
 
 ## Usage
 
+Instal `collo` as a global dependency to use it from every direction in your console and run binaries as `collo-cli` to start.
+
 ```shell
 yarn global add collo-cli
-collo
+collo-cli
 ```
 
 ## API
@@ -78,7 +80,7 @@ yarn
 
 - [ ] TypeScript definitions
 - [x] Jest tests
-- [ ] binaries
+- [x] binaries
 
 ## License
 

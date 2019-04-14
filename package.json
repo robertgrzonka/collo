@@ -17,7 +17,9 @@
     "inquirer": "^6.2.2",
     "standard": "^12.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^24.7.1"
+  },
   "os": [
     "darwin"
   ],
