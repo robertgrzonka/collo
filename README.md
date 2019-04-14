@@ -1,11 +1,11 @@
 # **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo) 
 
-> Create list of your colors, test with CLI and reuse it!
+> Create palette of your resuable colors, test how they look in console and reuse them later.
 
 ## Table of Contents
 * [collo](#collo-build-status)
   * [Table of Contents](#table-of-contents)
-  * [Overview](#overview)
+  * [Install](#install)
   * [Usage](#usage)
   * [API](#api)
     * [`collo.path`](#collopath)
@@ -14,27 +14,31 @@
     * [`collo.add`](#colloadd)
     * [`collo.delete`](#collodelete)
   * [Contribution](#contribution)
+    * [Development](#development)
   * [TODO](#todo)
   * [License](#license)
 
-## Overview
+## Install
 
-`collo` is CLI tool to store and test your color palette. Easy way to keep all of used by your colors in one place, to edit them easily or just to always have nice default palette near you.
-
-## Usage
-
-Instal `collo` as a global dependency to use it from every direction in your console and run binaries as `collo-cli` to start.
+Install `collo` as a global dependency to use it from every directory in your console.
 
 ```shell
 yarn global add collo-cli
-collo-cli
 ```
+
+## Usage
+
+`collo` is CLI tool to store, test and modify your color palette. Easy way to keep all of used by you colors in one place, to edit them easily or just to always have nice default palette near you. `collo` tries to be as handy and easy as possible.
+
+After installation you can run pre-installed binaries as simple command `collo-cli`.
 
 ## API
 
+Nevertheless, `collo` is not only a CLI tool—it gots a few built-in `methods` to allow you work with it in your projects.
+
 ### `collo.path`
 
-Path to your color palette. `collo` uses [conf](https://github.com/sindresorhus/conf) under the hood to store data, `collo.path` is just a shortcut for `collo.config.path`.
+Path to your color palette. `collo` uses [conf](https://github.com/sindresorhus/conf) under the hood to store data; `collo.path` is just a shortcut for `collo.config.path`.
 
 ### `collo.colors`
 
@@ -85,7 +89,12 @@ collo.delete('colors.pink')
 ```
 
 ## Contribution
-In your default destination clone repository and install dependencies. Next you should check [API](#api).
+
+If you have any ideas and will to work with me in this project—you are kindly welcomed!
+
+### Development 
+
+In your default destination clone repository and install dependencies. Next you should get to know our [API](#api).
 
 ```shell
 git clone https://github.com/robertgrzonka/collo.git
@@ -101,4 +110,4 @@ yarn
 
 ## License
 
-MIT © [robertgrzonka](https://robert.theguys.sh)
+MIT © [robertgrzonka](mailto:robert@theguys.sh)
