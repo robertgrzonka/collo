@@ -1,5 +1,5 @@
 # **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo)
-> Lorem ipsum.
+> Create list of your colors, test with CLI and reuse it!
 
 ## Table of Contents
 
