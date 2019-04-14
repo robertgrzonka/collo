@@ -80,7 +80,7 @@ yarn
 
 - [ ] TypeScript definitions
 - [x] Jest tests
-- [ ] binaries
+- [x] binaries
 
 ## License
 
