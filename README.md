@@ -15,7 +15,8 @@
     * [`collo.delete`](#collodelete)
   * [Contribution](#contribution)
     * [Development](#development)
-  * [TODO](#todo)
+    * [TODO](#todo)
+  * [Contributors](#contributors)
   * [License](#license)
 
 ## Install
