@@ -10,46 +10,93 @@ const textGen = require('./text-gen')
 
 const checkWhatsNext = () => {
   inquirer.prompt(questions.sixth).then(answers => {
-    if (answers.next === true) start(questions)
+    if (answers.next === true) {
+      start(questions)
+    } else {
+      return false
+    }
   })
 }
 
 clear()
-console.log(`${chalk.bold('\ncollo™ • test colors in your console\n')}`)
+console.log(chalk.bold.hex('#facf5a')('\ncollo™ • test colors in your console\n'))
 const start = questions => {
   inquirer.prompt(questions.first)
     .then(answers => {
-      if (answers.menu === 'See list of colors') {
-        console.table(Object.entries(collo.colors))
-        checkWhatsNext()
-      } else if (answers.menu === 'See color in sentence') {
-        inquirer.prompt(questions.second).then(answers => {
-          const test = answers.testColor
-          const val = collo.colors[ test ]
-          console.log('\n' + chalk.hex(val)(textGen.sentence) + '\n')
+      switch (answers.menu) {
+        case 'See list of colors':
+          console.table(Object.entries(collo.colors))
           checkWhatsNext()
-        })
-      } else if (answers.menu === 'Edit existing list of colors') {
-        inquirer.prompt(questions.third).then((answers) => {
-          const toChange = answers.changeColor
-          inquirer.prompt(questions.fourth).then(answers => {
-            const newVal = answers.format
-            collo.editColor = [ toChange, newVal ]
-            console.log(`Color changed: ${toChange} to ${newVal}`)
-            checkWhatsNext()
+          break
+        case 'See color in sentence':
+          inquirer
+            .prompt(questions.second)
+            .then(answers => {
+              const test = answers.testColor
+              const val = collo.colors[ test ]
+              console.log('\n' + chalk.hex(val)(textGen.sentence) + '\n')
+              checkWhatsNext()
+            })
+          break
+        case 'Edit value of existing color':
+          inquirer
+            .prompt(questions.third)
+            .then((answers) => {
+              const toChange = answers.changeColor
+              inquirer.prompt(questions.fourth).then(answers => {
+                const newVal = answers.format
+                collo.editColor = [ toChange, newVal ]
+                console.log(`Color changed: ${toChange} to ${newVal}`)
+                checkWhatsNext()
+              })
+            })
+          break
+        case 'Add new color':
+          inquirer
+            .prompt([ questions.seventh, questions.eight ])
+            .then(answers => {
+              const name = answers.newColorName
+              const value = answers.newColorHex
+              collo.addColor = [ name, value ]
+              console.log(`Added color: ${name} with value ${chalk.hex(value)(value)}`)
+              checkWhatsNext()
+            })
+          break
+        case 'Delete color':
+          inquirer
+            .prompt([ questions.nineth, questions.ten ])
+            .then(answers => {
+              const toDelete = answers.deleteColor
+              const confirmation = answers.confirmDelete
+              if (confirmation) {
+                collo.config.delete(`colors.${toDelete}`)
+                console.log(`Deleted color: ${toDelete}.`)
+                checkWhatsNext()
+              } else {
+                checkWhatsNext()
+              }
+            })
+          break
+        case 'Set default color palette':
+          inquirer
+            .prompt(questions.fifth)
+            .then(answers => {
+              if (answers.setDefaults === true) {
+                collo.config.set('colors', defaultColors)
+                console.log('Colors were set from default color palette.')
+              }
+              checkWhatsNext()
+            })
+          break
+        case 'Show path to configuration file':
+          console.log(chalk.bold.hex('#facf5a')('Path: ') + collo.path)
+          checkWhatsNext()
+          break
+        default:
+          process.on('exit', () => {
+            console.log(chalk.bold.hex('#facf5a')('\nPath to your configuration: ') + collo.path)
+            console.log(chalk.bold.hex('#facf5a')`See you around & bye, bye!\n`)
           })
-        })
-      } else if (answers.menu === 'Set default color palette') {
-        inquirer.prompt(questions.fifth).then(answers => {
-          if (answers.setDefaults === true) collo.config.set('colors', defaultColors)
-          console.log('Colors were set from default color palette.')
-          checkWhatsNext()
-        })
-      } else {
-        process.on('exit', () => {
-          console.log('\nPath to your configuration: ' + collo.path)
-          console.log(chalk.bold.blue('\nBye, bye!\n'))
-        })
       }
     })
 }

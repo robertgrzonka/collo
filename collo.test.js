@@ -3,7 +3,7 @@ const collo = require('./collo')
 describe('collo object', () => {
 
   afterAll(() => {
-    collo.config.delete('colors.testColor')
+    collo.config.delete('colors.testColorJest')
   })
 
   test('adds new color', () => {
