@@ -7,16 +7,17 @@ const question = chalk.bold.yellow
 
 module.exports = {
   first: {
-  type: 'list',
+    type: 'list',
     name: 'menu',
-      message: question('Hi! What would you like to do? 🤔 '),
-        choices: [
-          'See list of colors',
-          'See color in sentence',
-          'Edit existing list of colors',
-          separator,
-          'Exit'
-        ]
+    message: question('What would you like to do? 🤔 '),
+    choices: [
+      'See list of colors',
+      'See color in sentence',
+      'Edit existing list of colors',
+      'Set default color palette',
+      separator,
+      'Exit'
+    ]
   },
   second: {
     type: 'list',
@@ -34,5 +35,17 @@ module.exports = {
     type: 'input',
     message: question('Write new value in HEX format:'),
     name: 'format'
+  },
+  fifth: {
+    type: 'confirm',
+    name: 'setDefaults',
+    message: question('Are you sure you want get back to default color palette?'),
+    default: false
+  },
+  sixth: {
+    type: 'confirm',
+    name: 'next',
+    message: question('Would you like to do something else?'),
+    default: false
   }
 }

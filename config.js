@@ -1,7 +1,7 @@
 const Conf = require('conf')
-const colors = require('./colorPalette')
+const pkg = require('./package.json')
 const config = new Conf()
 
-config.set('colors', colors)
+config.set('name', pkg.name)
 
 module.exports = config
