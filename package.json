@@ -1,6 +1,6 @@
 {
   "name": "collo-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "create and test your color palette in CLI",
   "main": "index.js",
   "repository": {
