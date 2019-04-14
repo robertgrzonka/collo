@@ -1,5 +1,4 @@
-# **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo) 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+# **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 > Create palette of your resuable colors, test how they look in console and reuse them later.
 
@@ -103,15 +102,11 @@ cd collo
 yarn
 ```
 
-## TODO
+### TODO
 
 - [ ] TypeScript definitions
 - [x] Jest tests
 - [x] binaries
-
-## License
-
-MIT © [robertgrzonka](mailto:robert@theguys.sh)
 
 ## Contributors
 
@@ -124,3 +119,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## License
+
+MIT © [robertgrzonka](mailto:robert@theguys.sh)
