@@ -7,13 +7,13 @@ describe('collo object', () => {
   })
 
   test('adds new color', () => {
-    collo.addColor = [ 'testColor', '#FF1493' ]
-    expect(collo.colors.testColor).toBeTruthy()
+    collo.addColor = [ 'testColorJest', '#FF1493' ]
+    expect(collo.colors.testColorJest).toBeTruthy()
   })
 
   test('edits existing color', () => {
     collo.editColor = [ 'black', '#000000' ]
-    expect(collo.colors.black).toBeTruthy()
+    expect(collo.colors.black).toEqual('#000000')
   })
 
   test('returns path', () => {

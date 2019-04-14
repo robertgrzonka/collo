@@ -23,7 +23,7 @@
 ## Usage
 
 ```shell
-yarn global add collo
+yarn global add collo-cli
 collo
 ```
 
