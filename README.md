@@ -1,17 +1,20 @@
-# **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo)
+# **collo** [![Build Status](https://travis-ci.com/robertgrzonka/collo.svg?branch=master)](https://travis-ci.com/robertgrzonka/collo) 
+
 > Create list of your colors, test with CLI and reuse it!
 
-- [**collo** ![Build Status](https://travis-ci.com/robertgrzonka/collo)](#collo-build-status)
-  - [Overview](#overview)
-  - [Usage](#usage)
-  - [API](#api)
-    - [`collo.path`](#collopath)
-    - [`collo.colors`](#collocolors)
-    - [`collo.editColor`](#colloeditcolor)
-    - [`collo.addColor`](#colloaddcolor)
-  - [Contribution](#contribution)
-  - [TODO](#todo)
-  - [License](#license)
+## Table of Contents
+* [collo](#collo-build-status)
+  * [Table of Contents](#table-of-contents)
+  * [Overview](#overview)
+  * [Usage](#usage)
+  * [API](#api)
+    * [`collo.path`](#collopath)
+    * [`collo.colors`](#collocolors)
+    * [`collo.editColor`](#colloeditcolor)
+    * [`collo.addColor`](#colloaddcolor)
+  * [Contribution](#contribution)
+  * [TODO](#todo)
+  * [License](#license)
 
 ## Overview
 
@@ -75,7 +78,7 @@ yarn
 
 - [ ] TypeScript definitions
 - [x] Jest tests
-- [ ] bin
+- [ ] binaries
 
 ## License
 
