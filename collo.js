@@ -6,10 +6,6 @@ const collo = {
   config: config
 }
 
-if (!collo.config.get('colors')) {
-  collo.config.set('colors', defaultColors)
-}
-
 Object.defineProperties(collo, {
   // easily return path
   path: {
@@ -20,6 +16,9 @@ Object.defineProperties(collo, {
 
   colors: {
     get () {
+      if (!collo.config.get('colors')) {
+        collo.config.set('colors', defaultColors)
+      }
       return this.config.get('colors')
     }
   },
