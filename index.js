@@ -2,11 +2,11 @@
 
 const inquirer = require('inquirer')
 const chalk = require('chalk')
-const questions = require('./questions')
-const defaultColors = require('./colorPalette')
 const clear = require('clear')
-const collo = require('./collo')
-const textGen = require('./text-gen')
+const questions = require('./lib/questions')
+const defaultColors = require('./lib/colorPalette')
+const collo = require('./lib/collo')
+const textGen = require('./lib/text-gen')
 
 const checkWhatsNext = () => {
   inquirer.prompt(questions.sixth).then(answers => {

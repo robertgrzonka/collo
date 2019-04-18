@@ -3,21 +3,21 @@
 > Create palette of your resuable colors, test how they look in console and reuse them later.
 
 ## Table of Contents
-* [collo](#collo-build-status)
-  * [Table of Contents](#table-of-contents)
-  * [Install](#install)
-  * [Usage](#usage)
-  * [API](#api)
-    * [`collo.path`](#collopath)
-    * [`collo.colors`](#collocolors)
-    * [`collo.edit`](#colloedit)
-    * [`collo.add`](#colloadd)
-    * [`collo.delete`](#collodelete)
-  * [Contribution](#contribution)
-    * [Development](#development)
-    * [TODO](#todo)
-  * [Contributors](#contributors)
-  * [License](#license)
+1. [**collo** ![Build Status](https://travis-ci.com/robertgrzonka/collo) ![All Contributors](#contributors)](#collo-build-status-all-contributors)
+   1. [Table of Contents](#table-of-contents)
+   2. [Install](#install)
+   3. [Usage](#usage)
+   4. [API](#api)
+      1. [`collo.path`](#collopath)
+      2. [`collo.colors`](#collocolors)
+      3. [`collo.edit(name, value`](#colloeditname-value)
+      4. [`collo.add(name, value)`](#colloaddname-value)
+      5. [`collo.delete`](#collodelete)
+   5. [Contribution](#contribution)
+      1. [Development](#development)
+      2. [TODO](#todo)
+   6. [Contributors](#contributors)
+   7. [License](#license)
 
 ## Install
 
@@ -62,22 +62,22 @@ const colorPalette = {
 }
 ```
 
-### `collo.edit`
+### `collo.edit(name, value`
 
 Edit color which already exists in palette. 
-New value has to be in HEX format and match `RegEx` pattern `/^\#[0-9a-zA-Z]{6}/` (hash sign `#` followed by six characters from 0-9 and a-zA-Z).
+Accepts `name` as a `string` and new value has to be in HEX format and match `RegEx` pattern `/^\#[0-9a-zA-Z]{6}/` (hash sign `#` followed by six characters from 0-9 and a-zA-Z).
 
 ```javascript
-collo.edit = [ 'pink', '#FFC6C1' ]
+collo.edit('pink', '#FFC6C1')
 ```
 
-### `collo.add`
+### `collo.add(name, value)`
 
 Add new color to palette. 
-New value has to be in HEX format and match `RegEx` pattern `/^\#[0-9a-zA-Z]{6}/` (hash sign `#` followed by six characters from 0-9 and a-zA-Z).
+Accepts `name` as a `string` and new value has to be in HEX format and match `RegEx` pattern `/^\#[0-9a-zA-Z]{6}/` (hash sign `#` followed by six characters from 0-9 and a-zA-Z).
 
 ```javascript
-collo.add = [ 'react', '#00d8ff' ]
+collo.add('react', '#00d8ff')
 ```
 
 ### `collo.delete`
@@ -86,12 +86,12 @@ Delete color from palette.
 Accepts only `string` matching one of the names in existing palette.
 
 ```javascript
-collo.delete('colors.pink')
+collo.delete('pink')
 ```
 
 ## Contribution
 
-If you have any ideas and will to work with me in this project—you are kindly welcomed!
+If you have any ideas and will to work with me in this project—you are kindly welcome!
 
 ### Development 
 
