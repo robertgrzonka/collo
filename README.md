@@ -3,7 +3,7 @@
 > Create palette of your resuable colors, test how they look in console and reuse them later.
 
 ## Table of Contents
-1. [**collo** ![Build Status](https://travis-ci.com/robertgrzonka/collo) ![All Contributors](#contributors)](#collo-build-status-all-contributors)
+1. [**collo**](#collo-build-status-all-contributors)
    1. [Table of Contents](#table-of-contents)
    2. [Install](#install)
    3. [Usage](#usage)
