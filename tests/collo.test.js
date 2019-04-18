@@ -1,19 +1,19 @@
-const collo = require('./collo')
+const collo = require('../lib/collo')
 
 describe('collo object', () => {
 
   test('adds new color', () => {
-    collo.add = [ 'testColorJest', '#FF1493' ]
+    collo.add('testColorJest', '#FF1493')
     expect(collo.colors.testColorJest).toBeTruthy()
   })
 
   test('edits existing color', () => {
-    collo.edit = [ 'testColorJest', '#FF4091' ]
+    collo.edit('testColorJest', '#FF4091')
     expect(collo.colors.testColorJest).toEqual('#FF4091')
   })
 
   test('deletes color', () => {
-    collo.delete = 'testColorJest'
+    collo.delete('testColorJest')
     expect(collo.colors.testColorJest).toBeFalsy()
   })
 
