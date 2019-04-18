@@ -62,7 +62,7 @@ const colorPalette = {
 }
 ```
 
-### `collo.edit(name, value`
+### `collo.edit(name, value)`
 
 Edit color which already exists in palette. 
 Accepts `name` as a `string` and new value has to be in HEX format and match `RegEx` pattern `/^\#[0-9a-zA-Z]{6}/` (hash sign `#` followed by six characters from 0-9 and a-zA-Z).
@@ -80,7 +80,7 @@ Accepts `name` as a `string` and new value has to be in HEX format and match `Re
 collo.add('react', '#00d8ff')
 ```
 
-### `collo.delete`
+### `collo.delete(name)`
 
 Delete color from palette.
 Accepts only `string` matching one of the names in existing palette.
