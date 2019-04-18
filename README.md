@@ -12,7 +12,7 @@
       2. [`collo.colors`](#collocolors)
       3. [`collo.edit(name, value`](#colloeditname-value)
       4. [`collo.add(name, value)`](#colloaddname-value)
-      5. [`collo.delete`](#collodelete)
+      5. [`collo.delete(name)`](#collodeletename)
    5. [Contribution](#contribution)
       1. [Development](#development)
       2. [TODO](#todo)
