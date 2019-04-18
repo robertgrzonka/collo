@@ -10,7 +10,7 @@
    4. [API](#api)
       1. [`collo.path`](#collopath)
       2. [`collo.colors`](#collocolors)
-      3. [`collo.edit(name, value`](#colloeditname-value)
+      3. [`collo.edit(name, value)`](#colloeditname-value)
       4. [`collo.add(name, value)`](#colloaddname-value)
       5. [`collo.delete(name)`](#collodeletename)
    5. [Contribution](#contribution)
