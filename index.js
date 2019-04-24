@@ -8,6 +8,11 @@ const defaultColors = require('./lib/colorPalette')
 const collo = require('./lib/collo')
 const textGen = require('./lib/text-gen')
 
+const fs = require('fs')
+const os = require('os')
+
+const colors = Object.entries(collo.colors)
+
 const checkWhatsNext = () => {
   inquirer.prompt(questions.sixth).then(answers => {
     if (answers.next === true) {
@@ -25,7 +30,16 @@ const start = questions => {
     .then(answers => {
       switch (answers.menu) {
         case 'See list of colors':
-          console.table(Object.entries(collo.colors))
+          const table = []
+          colors.forEach(color => {
+            const [ name, value ] = color
+            const nextColor = {
+              name: name,
+              value: value
+            }
+            table.push(nextColor)
+          })
+          console.table(table)
           checkWhatsNext()
           break
         case 'See color in sentence':
@@ -90,6 +104,17 @@ const start = questions => {
           break
         case 'Show path to configuration file':
           console.log(chalk.bold.hex('#facf5a')('Path: ') + collo.path)
+          checkWhatsNext()
+          break
+        case 'Export SCSS file for color palette':
+          const file = fs.createWriteStream(os.homedir() + '/Downloads/color-palette.scss')
+          file.write('/* Color palette */\n')
+          colors.forEach(color => {
+            const [ key, value ] = color
+            file.write(`$${key}: ${value}; .text-${key} {color: $${key}} .bg-${key} {background-color: $${key}}`)
+          })
+          file.end('/* End */')
+          console.log(`Path to scss file: ${os.homedir()}/Downloads/color-palette.scss`)
           checkWhatsNext()
           break
         default:
