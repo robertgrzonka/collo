@@ -1,129 +1,138 @@
 #!/usr/bin/env node
 
-const inquirer = require('inquirer')
-const chalk = require('chalk')
-const clear = require('clear')
-const questions = require('./lib/questions')
-const defaultColors = require('./lib/colorPalette')
-const collo = require('./lib/collo')
-const textGen = require('./lib/text-gen')
+const inquirer = require("inquirer");
+const chalk = require("chalk");
+const clear = require("clear");
+const questions = require("./lib/questions");
+const defaultColors = require("./lib/colorPalette");
+const collo = require("./lib/collo");
+const textGen = require("./lib/text-gen");
 
-const fs = require('fs')
-const os = require('os')
+const fs = require("fs");
+const os = require("os");
 
-const colors = Object.entries(collo.colors)
+const colors = Object.entries(collo.colors);
 
 const checkWhatsNext = () => {
-  inquirer.prompt(questions.sixth).then(answers => {
+  inquirer.prompt(questions.sixth).then((answers) => {
     if (answers.next === true) {
-      start(questions)
+      start(questions);
     } else {
-      return false
+      return false;
     }
-  })
-}
+  });
+};
 
-clear()
-console.log(chalk.bold.hex('#facf5a')('\ncollo™ • test colors in your console\n'))
-const start = questions => {
-  inquirer.prompt(questions.first)
-    .then(answers => {
+clear();
+console.log(
+  chalk.bold.hex("#facf5a")("\ncollo™ • test colors in your console\n")
+);
+const start = (questions) => {
+  inquirer
+    .prompt(questions.first)
+    .then((answers) => {
       switch (answers.menu) {
-        case 'See list of colors':
-          const table = []
-          colors.forEach(color => {
-            const [ name, value ] = color
-            const nextColor = {
-              name: name,
-              value: value
-            }
-            table.push(nextColor)
-          })
-          console.table(table)
-          checkWhatsNext()
-          break
-        case 'See color in sentence':
+        case "See list of colors":
+          const table = colors.map((color) => {
+            const [name, value] = color;
+            return { name, value };
+          });
+          console.table(table);
+          checkWhatsNext();
+          break;
+        case "See color in sentence":
+          inquirer.prompt(questions.second).then((answers) => {
+            const test = answers.testColor;
+            const value = collo.colors[test];
+            console.log("\n" + chalk.hex(value)(textGen.sentence) + "\n");
+            checkWhatsNext();
+          });
+          break;
+        case "Edit value of existing color":
+          inquirer.prompt(questions.third).then((answers) => {
+            const toChange = answers.changeColor;
+            inquirer.prompt(questions.fourth).then((answers) => {
+              const newVal = answers.format;
+              collo.config.delete(`colors.${toChange}`);
+              collo.config.set(`colors.${toChange}`, newVal);
+              console.log(`Color changed: ${toChange} to ${newVal}`);
+              checkWhatsNext();
+            });
+          });
+          break;
+        case "Add new color":
           inquirer
-            .prompt(questions.second)
-            .then(answers => {
-              const test = answers.testColor
-              const val = collo.colors[ test ]
-              console.log('\n' + chalk.hex(val)(textGen.sentence) + '\n')
-              checkWhatsNext()
-            })
-          break
-        case 'Edit value of existing color':
-          inquirer
-            .prompt(questions.third)
+            .prompt([questions.seventh, questions.eight])
             .then((answers) => {
-              const toChange = answers.changeColor
-              inquirer.prompt(questions.fourth).then(answers => {
-                const newVal = answers.format
-                collo.editColor = [ toChange, newVal ]
-                console.log(`Color changed: ${toChange} to ${newVal}`)
-                checkWhatsNext()
-              })
-            })
-          break
-        case 'Add new color':
-          inquirer
-            .prompt([ questions.seventh, questions.eight ])
-            .then(answers => {
-              const name = answers.newColorName
-              const value = answers.newColorHex
-              collo.addColor = [ name, value ]
-              console.log(`Added color: ${name} with value ${chalk.hex(value)(value)}`)
-              checkWhatsNext()
-            })
-          break
-        case 'Delete color':
-          inquirer
-            .prompt([ questions.nineth, questions.ten ])
-            .then(answers => {
-              const toDelete = answers.deleteColor
-              const confirmation = answers.confirmDelete
-              if (confirmation) {
-                collo.config.delete(`colors.${toDelete}`)
-                console.log(`Deleted color: ${toDelete}.`)
-                checkWhatsNext()
-              } else {
-                checkWhatsNext()
-              }
-            })
-          break
-        case 'Set default color palette':
-          inquirer
-            .prompt(questions.fifth)
-            .then(answers => {
-              if (answers.setDefaults === true) {
-                collo.config.set('colors', defaultColors)
-                console.log('Colors were set from default color palette.')
-              }
-              checkWhatsNext()
-            })
-          break
-        case 'Show path to configuration file':
-          console.log(chalk.bold.hex('#facf5a')('Path: ') + collo.path)
-          checkWhatsNext()
-          break
-        case 'Export SCSS file for color palette':
-          const file = fs.createWriteStream(os.homedir() + '/Downloads/color-palette.scss')
-          file.write('/* Color palette */\n')
-          colors.forEach(color => {
-            const [ key, value ] = color
-            file.write(`$${key}: ${value}; .text-${key} {color: $${key}} .bg-${key} {background-color: $${key}}`)
-          })
-          file.end('/* End */')
-          console.log(`Path to scss file: ${os.homedir()}/Downloads/color-palette.scss`)
-          checkWhatsNext()
-          break
+              const name = answers.newColorName;
+              const value = answers.newColorHex;
+              collo.config.set(`colors.${name}`, value);
+              console.log(
+                `Added color: ${name} with value ${chalk.hex(value)(value)}`
+              );
+              checkWhatsNext();
+            });
+          break;
+        case "Delete color":
+          inquirer.prompt([questions.nineth, questions.ten]).then((answers) => {
+            const toDelete = answers.deleteColor;
+            const confirmation = answers.confirmDelete;
+            if (confirmation) {
+              collo.config.delete(`colors.${toDelete}`);
+              console.log(`Deleted color: ${toDelete}.`);
+              checkWhatsNext();
+            } else {
+              checkWhatsNext();
+            }
+          });
+          break;
+        case "Set default color palette":
+          inquirer.prompt(questions.fifth).then((answers) => {
+            if (answers.setDefaults === true) {
+              collo.config.set("colors", defaultColors);
+              console.log("Colors were set from default color palette.");
+            }
+            checkWhatsNext();
+          });
+          break;
+        case "Show path to configuration file":
+          console.log(chalk.bold.hex("#facf5a")("Path: ") + collo.path);
+          checkWhatsNext();
+          break;
+        case "Export SCSS file for color palette":
+          const file = fs.createWriteStream(
+            os.homedir() + "/Downloads/color-palette.scss"
+          );
+          file.write("/* Color palette */\n");
+          colors.forEach((color) => {
+            const [key, value] = color;
+            file.write(
+              `$${key}: ${value}; .text-${key} {color: $${key}} .bg-${key} {background-color: $${key}}`
+            );
+          });
+          file.end("/* End */");
+          console.log(
+            `Path to scss file: ${os.homedir()}/Downloads/color-palette.scss`
+          );
+          checkWhatsNext();
+          break;
         default:
-          process.on('exit', () => {
-            console.log(chalk.bold.hex('#facf5a')('\nPath to your configuration: ') + collo.path)
-            console.log(chalk.bold.hex('#facf5a')`See you around & bye, bye!\n`)
-          })
+          process.on("exit", () => {
+            console.log(
+              chalk.bold.hex("#facf5a")("\nPath to your configuration: ") +
+                collo.path
+            );
+            console.log(
+              chalk.bold.hex("#facf5a")`See you around & bye, bye!\n`
+            );
+          });
       }
     })
-}
+    .catch((error) => {
+      if (error) {
+        console.error(error);
+      }
+    });
+};
 
-start(questions)
+start(questions);
