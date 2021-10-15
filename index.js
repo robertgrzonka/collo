@@ -11,28 +11,25 @@ const textGen = require("./lib/text-gen");
 const fs = require("fs");
 const os = require("os");
 
-const colors = Object.entries(collo.colors);
-
-const checkWhatsNext = () => {
-  inquirer.prompt(questions.sixth).then((answers) => {
-    if (answers.next === true) {
-      start(questions);
-    } else {
-      return false;
-    }
-  });
-};
+const checkWhatsNext = () =>
+  inquirer
+    .prompt(questions.letsGo)
+    .then((answers) => !answers.next || start(questions));
 
 clear();
 console.log(
-  chalk.bold.hex("#facf5a")("\ncollo™ • test colors in your console\n")
+  chalk.bold.hex("#facf5a")(`
+‣ collo™ • test colors in your console
+`)
 );
+
 const start = (questions) => {
   inquirer
-    .prompt(questions.first)
+    .prompt(questions.menu)
     .then((answers) => {
       switch (answers.menu) {
         case "See list of colors":
+          const colors = Object.entries(collo.config.get("colors"));
           const table = colors.map((color) => {
             const [name, value] = color;
             return { name, value };
@@ -41,28 +38,26 @@ const start = (questions) => {
           checkWhatsNext();
           break;
         case "See color in sentence":
-          inquirer.prompt(questions.second).then((answers) => {
-            const test = answers.testColor;
-            const value = collo.colors[test];
-            console.log("\n" + chalk.hex(value)(textGen.sentence) + "\n");
+          inquirer.prompt(questions.palette).then((answers) => {
+            const value = collo.colors[answers.testColor];
+            console.log(chalk.hex(value)(textGen.sentence));
             checkWhatsNext();
           });
           break;
         case "Edit value of existing color":
-          inquirer.prompt(questions.third).then((answers) => {
+          inquirer.prompt(questions.editColorHex).then((answers) => {
             const toChange = answers.changeColor;
-            inquirer.prompt(questions.fourth).then((answers) => {
-              const newVal = answers.format;
-              collo.config.delete(`colors.${toChange}`);
-              collo.config.set(`colors.${toChange}`, newVal);
-              console.log(`Color changed: ${toChange} to ${newVal}`);
+            inquirer.prompt(questions.editColorHex).then((answers) => {
+              const newValue = answers.format;
+              collo.config.set(`colors.${toChange}`, newValue);
+              console.log(`Color changed: ${toChange} to ${newValue}`);
               checkWhatsNext();
             });
           });
           break;
         case "Add new color":
           inquirer
-            .prompt([questions.seventh, questions.eight])
+            .prompt([questions.addColorName, questions.addColorHex])
             .then((answers) => {
               const name = answers.newColorName;
               const value = answers.newColorHex;
@@ -74,21 +69,21 @@ const start = (questions) => {
             });
           break;
         case "Delete color":
-          inquirer.prompt([questions.nineth, questions.ten]).then((answers) => {
-            const toDelete = answers.deleteColor;
-            const confirmation = answers.confirmDelete;
-            if (confirmation) {
-              collo.config.delete(`colors.${toDelete}`);
-              console.log(`Deleted color: ${toDelete}.`);
+          inquirer
+            .prompt([questions.deleteColor, questions.confirmDeleteColor])
+            .then((answers) => {
+              if (answers.confirmDelete) {
+                collo.config.delete(`colors.${answers.deleteColor}`);
+                console.log(
+                  `Deleted color: ${chalk.bold(answers.deleteColor)}.`
+                );
+              }
               checkWhatsNext();
-            } else {
-              checkWhatsNext();
-            }
-          });
+            });
           break;
         case "Set default color palette":
-          inquirer.prompt(questions.fifth).then((answers) => {
-            if (answers.setDefaults === true) {
+          inquirer.prompt(questions.setDefault).then((answers) => {
+            if (answers.setDefaults) {
               collo.config.set("colors", defaultColors);
               console.log("Colors were set from default color palette.");
             }
@@ -96,15 +91,18 @@ const start = (questions) => {
           });
           break;
         case "Show path to configuration file":
-          console.log(chalk.bold.hex("#facf5a")("Path: ") + collo.path);
+          console.log(
+            chalk.bold.hex("#facf5a")("\nPath: \n") + collo.path + "\n"
+          );
           checkWhatsNext();
           break;
         case "Export SCSS file for color palette":
+          const colorsToExport = Object.entries(collo.config.get("colors"));
           const file = fs.createWriteStream(
             os.homedir() + "/Downloads/color-palette.scss"
           );
           file.write("/* Color palette */\n");
-          colors.forEach((color) => {
+          colorsToExport.forEach((color) => {
             const [key, value] = color;
             file.write(
               `$${key}: ${value}; .text-${key} {color: $${key}} .bg-${key} {background-color: $${key}}`
@@ -112,27 +110,23 @@ const start = (questions) => {
           });
           file.end("/* End */");
           console.log(
-            `Path to scss file: ${os.homedir()}/Downloads/color-palette.scss`
+            `\nPath to scss file: \n${os.homedir()}/Downloads/color-palette.scss\n`
           );
           checkWhatsNext();
           break;
         default:
           process.on("exit", () => {
             console.log(
-              chalk.bold.hex("#facf5a")("\nPath to your configuration: ") +
+              chalk.bold.hex("#facf5a")("\n‣ Path to your configuration: \n") +
                 collo.path
             );
             console.log(
-              chalk.bold.hex("#facf5a")`See you around & bye, bye!\n`
+              chalk.bold.hex("#facf5a")`\n👋 See you around & bye, bye!\n`
             );
           });
       }
     })
-    .catch((error) => {
-      if (error) {
-        console.error(error);
-      }
-    });
+    .catch((error) => console.error(error));
 };
 
 start(questions);
